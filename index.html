@@ -13,7 +13,22 @@
   var canvas = document.getElementById('renderCanvas');
   var engine = new BABYLON.Engine(canvas, true);
   var createScene = function () {
+
     var scene = new BABYLON.Scene(engine);
+
+    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 2, -10), scene);
+    camera.setTarget(BABYLON.Vector3.Zero());
+    camera.attachControl(canvas);
+
+    // HemisphericLight for ambient light.
+    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+
+    var ground = new BABYLON.Mesh.CreateGround('ground1', 20, 20, 1, scene);
+
+    // Add some objects first.
+    var sphere = new BABYLON.Mesh.CreateSphere('sphere1', 16, 1, scene);
+    sphere.position.y = 0.5;
+
     return scene;
   }
 
