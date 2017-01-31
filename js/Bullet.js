@@ -1,5 +1,10 @@
 /**
- * A bullet shot by the player.
+ * Bullet module: a bullet shot by the player.
+ */
+'use strict';
+
+/**
+ * Constructor function.
  * @param string name: Name/ID of bullet.
  * @param Vector3 position: Position of bullet.
  * @param Vector3 direction: Direction shot.
@@ -9,8 +14,7 @@
 function Bullet (name, position, direction, speed, scene) {
 
   this.name = name;
-  this.position = position;
-  this.direction = direction;
+  this.direction = direction.normalize();
   this.speed = speed;
   this.scene = scene;
 
@@ -20,9 +24,15 @@ function Bullet (name, position, direction, speed, scene) {
   sphere.checkCollisions = true;
 
   this.mesh = sphere;
+  this.mesh.position = position;
+
+  // Run a function to update bullet on each frame.
+  Game.subscribe('frame', this.onFrame);
 }
 
 // Update bullet position on every frame.
-Bullet.prototype.frameUpdate = function () {
+Bullet.prototype.onFrame = function () {
+  // Increment position by direction.
+  this.mesh.position.addInPlace(this.direction);
 }
 

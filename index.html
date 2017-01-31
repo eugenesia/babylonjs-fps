@@ -4,6 +4,8 @@
   <title>FPS - Babylon.js</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.5.0/babylon.js"></script>
+  <script src="js/Game.js"></script>
+  <script src="js/Bullet.js"></script>
 </head>
 <body>
 <canvas id="renderCanvas"></canvas>
@@ -14,7 +16,7 @@
   var engine = new BABYLON.Engine(canvas, true);
   // Player represented by camera.
   var camera;
-  var createScene = function () {
+  function createScene () {
 
     // Scene setup.
     var scene = new BABYLON.Scene(engine);
