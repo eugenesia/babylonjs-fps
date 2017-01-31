@@ -11,7 +11,7 @@
  * @param number speed: Speed of bullet.
  * @param Scene scene: Scene where it is inserted.
  */
-function Bullet (name, position, direction, speed, scene) {
+function Bullet(name, position, direction, speed, scene) {
 
   this.name = name;
   this.direction = direction.normalize();
@@ -19,7 +19,7 @@ function Bullet (name, position, direction, speed, scene) {
   this.scene = scene;
 
   // Create a mesh representing the bullet.
-  var sphere = new BABYLON.CreateSphere(name, 16, 0.5, scene);
+  var sphere = new BABYLON.Mesh.CreateSphere(name, 16, 0.5, scene);
   sphere.position = position;
   sphere.checkCollisions = true;
 
@@ -27,12 +27,14 @@ function Bullet (name, position, direction, speed, scene) {
   this.mesh.position = position;
 
   // Run a function to update bullet on each frame.
-  Game.subscribe('frame', this.onFrame);
+  // When using a function refernce, it needs to be bound to 'this' object
+  // otherwise 'this' will be undefined in onFrame().
+  Game.subscribe('frame', this.onFrame.bind(this));
 }
 
 // Update bullet position on every frame.
-Bullet.prototype.onFrame = function () {
+Bullet.prototype.onFrame = function() {
   // Increment position by direction.
-  this.mesh.position.addInPlace(this.direction);
-}
+  this.mesh.position.addInPlace(this.direction.scale(this.speed));
+};
 

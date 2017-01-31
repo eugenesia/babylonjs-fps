@@ -17,7 +17,7 @@ var Game = (function () {
   function subscribe(eventName, handler) {
     // Don't attach the same event handler twice.
     var handlerPos = subscribers[eventName].indexOf(handler);
-    if (handlerPos !== -1) {
+    if (handlerPos === -1) {
       subscribers[eventName].push(handler);
     }
   }
@@ -35,15 +35,17 @@ var Game = (function () {
 
   // Call all subscribers on the onFrame event.
   function onFrame() {
-    for (var i=0; i<subscribers.length; i++) {
+    for (var i = 0; i < subscribers.frame.length; i++) {
       var func = subscribers.frame[i];
-      func();
+      func.call();
     }
   }
   
   return {
     subscribe: subscribe,
     unsubscribe: unsubscribe,
+    onFrame: onFrame,
+    // subscribers: subscribers,
   };
 })();
 
