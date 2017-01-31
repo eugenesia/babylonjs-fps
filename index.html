@@ -62,14 +62,28 @@
   var scene = createScene();
 
   // Register a render loop to repeatedly render the scene.
-  engine.runRenderLoop(function () {
+  engine.runRenderLoop(function() {
     scene.render();
     Game.onFrame();
   });
 
   // Watch for browser/canvas resize events
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', function() {
     engine.resize();
+  });
+
+  window.addEventListener('keypress', function(evt) {
+
+    // Shoot a bullet.
+    if (evt.key === ' ') {
+
+      var bullet = new Bullet(
+        'bullet', // Name.
+        new BABYLON.Vector3(0, 1, 0), // Position.
+        new BABYLON.Vector3(1, 0, -1), // Direction.
+        0.01, // Speed.
+        scene);
+    }
   });
 </script>
 </body>
