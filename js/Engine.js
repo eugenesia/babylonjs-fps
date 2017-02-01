@@ -1,9 +1,9 @@
 /**
- * Common/shared properties and functions for the whole game.
+ * Game engine-related stuff.
  */
 'use strict';
 var Game = Game || {};
-Game.Common = (function(window, document) {
+Game.Engine = (function(window, document) {
 
   // Subscribers to events.
   var subscribers = {

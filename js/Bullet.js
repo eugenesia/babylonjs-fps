@@ -30,7 +30,7 @@
     // Run a function to update bullet on each frame.
     // When using a function refernce, it needs to be bound to 'this' object
     // otherwise 'this' will be undefined in onFrame().
-    Game.Common.subscribe('frame', this.onFrame.bind(this));
+    Game.Engine.subscribe('frame', this.onFrame.bind(this));
   }
 
   // Update bullet position on every frame.
