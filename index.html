@@ -4,7 +4,7 @@
   <title>FPS - Babylon.js</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.5.0/babylon.js"></script>
-  <script src="js/Game.js"></script>
+  <script src="js/Common.js"></script>
   <script src="js/Bullet.js"></script>
 </head>
 <body>
@@ -64,7 +64,7 @@
   // Register a render loop to repeatedly render the scene.
   engine.runRenderLoop(function() {
     scene.render();
-    Game.onFrame();
+    Game.Common.onFrame();
   });
 
   // Watch for browser/canvas resize events

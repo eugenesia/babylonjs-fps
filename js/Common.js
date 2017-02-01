@@ -1,8 +1,9 @@
 /**
- * Main Game module.
+ * Common/shared properties and functions for the whole game.
  */
 'use strict';
-var Game = (function(window, document) {
+var Game = Game || {};
+Game.Common = (function(window, document) {
 
   // Subscribers to events.
   var subscribers = {
