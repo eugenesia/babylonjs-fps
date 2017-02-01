@@ -2,8 +2,7 @@
  * Main Game module.
  */
 'use strict';
-
-var Game = (function () {
+var Game = (function(window, document) {
 
   // Subscribers to events.
   var subscribers = {
@@ -46,6 +45,9 @@ var Game = (function () {
     unsubscribe: unsubscribe,
     onFrame: onFrame,
     // subscribers: subscribers,
+
+    // Babylon scene object.
+    scene: null,
   };
-})();
+})(null, null);
 
