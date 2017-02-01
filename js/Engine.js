@@ -3,13 +3,28 @@
  */
 'use strict';
 var Game = Game || {};
-Game.Engine = (function(window, document) {
+Game.Engine = (function(window, document, BABYLON) {
 
   // Subscribers to events.
   var subscribers = {
     // Frame update.
     frame: [],
   };
+
+  var engine;
+
+
+  // Initialise the object.
+  // @param DOMObject canvas: The WebGL canvas.
+  function init(canvas) {
+    engine = new BABYLON.Engine(canvas, true);
+  }
+
+
+  // Get Babylon engine object.
+  function getEngine() {
+    return engine;
+  }
 
   // Subscribe to an event.
   // eventName: Name of event.
@@ -42,13 +57,14 @@ Game.Engine = (function(window, document) {
   }
   
   return {
+    init: init,
     subscribe: subscribe,
     unsubscribe: unsubscribe,
     onFrame: onFrame,
     // subscribers: subscribers,
 
-    // Babylon scene object.
-    scene: null,
+    // Babylon engine object.
+    getEngine: getEngine,
   };
-})(null, null);
+})(null, null, BABYLON);
 

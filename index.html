@@ -5,86 +5,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.5.0/babylon.js"></script>
   <script src="js/Engine.js"></script>
+  <script src="js/Scene.js"></script>
   <script src="js/Bullet.js"></script>
 </head>
 <body>
 <canvas id="renderCanvas"></canvas>
-<script>
-  'use strict';
-
-  var canvas = document.getElementById('renderCanvas');
-  var engine = new BABYLON.Engine(canvas, true);
-  // Player represented by camera.
-  var camera;
-  function createScene () {
-
-    // Scene setup.
-    var scene = new BABYLON.Scene(engine);
-    scene.gravity = new BABYLON.Vector3(0, -0.5, 0);
-    scene.collisionsEnabled = true;
-    scene.workerCollisions = true;
-
-    // Camera setup.
-    camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 1, -10), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl(canvas);
-    camera.applyGravity = true;
-    camera.checkCollisions = true;
-    camera.ellipsoid  = new BABYLON.Vector3(0.5, 0.5, 0.5);
-    camera.speed = 1;
-
-    // HemisphericLight for ambient light.
-    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
-
-    var ground = new BABYLON.Mesh.CreateGround('ground1', 20, 20, 1, scene);
-    ground.checkCollisions = true;
-
-    // Add some objects first.
-    var sphere = new BABYLON.Mesh.CreateSphere('sphere1', 16, 1, scene);
-    sphere.position.y = 0.5;
-    sphere.checkCollisions = true;
-
-    var box = new BABYLON.Mesh.CreateBox('box1', 2, scene);
-    box.position = new BABYLON.Vector3(4, 0, 0);
-    
-    box.checkCollisions = true;
-
-    window.bullet = new Game.Bullet(
-      'bullet', // Name.
-      new BABYLON.Vector3(0, 1, 0), // Position.
-      new BABYLON.Vector3(1, 0, -1), // Direction.
-      0.01, // Speed.
-      scene);
-
-    return scene;
-  }
-
-  var scene = createScene();
-
-  // Register a render loop to repeatedly render the scene.
-  engine.runRenderLoop(function() {
-    scene.render();
-    Game.Engine.onFrame();
-  });
-
-  // Watch for browser/canvas resize events
-  window.addEventListener('resize', function() {
-    engine.resize();
-  });
-
-  window.addEventListener('keypress', function(evt) {
-
-    // Shoot a bullet.
-    if (evt.key === ' ') {
-
-      var bullet = new Bullet(
-        'bullet', // Name.
-        new BABYLON.Vector3(0, 1, 0), // Position.
-        new BABYLON.Vector3(1, 0, -1), // Direction.
-        0.01, // Speed.
-        scene);
-    }
-  });
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
