@@ -27,10 +27,12 @@
     this.mesh = sphere;
     this.mesh.position = position;
 
-    // Run a function to update bullet on each frame.
-    // When using a function refernce, it needs to be bound to 'this' object
+    // When using a function reference, it needs to be bound to 'this' object
     // otherwise 'this' will be undefined in onFrame().
-    Game.Engine.subscribe('frame', this.onFrame.bind(this));
+    this.onFrame = this.onFrame.bind(this);
+
+    // Run a function to update bullet on each frame.
+    Game.Engine.subscribe('frame', this.onFrame);
   }
 
   // Update bullet position on every frame.
